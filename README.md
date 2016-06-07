@@ -13,14 +13,14 @@ The driver core is based on Gregory W. Hecker driver available at http://github.
 
 You can install GNU Radio through a .deb package or by using PyBOMBS. Please choose only **one** of these two procedures.
 
-- In Ubuntu 12.10 and later, or Debian Jessie or later, install GNU Radio and other dependencies through a .deb package:
+### In Ubuntu 12.10 and later, or Debian Jessie or later, install GNU Radio and other dependencies through a .deb package:
 
 ~~~~~~ 
 $ sudo apt-get install gnuradio-dev libusb-dev
 ~~~~~~
 
 
-- Semi-automatic installation of GNU Radio using PyBOMBS:
+### Semi-automatic installation of GNU Radio using PyBOMBS:
 
 Downloading, building and installing [GNU Radio](http://gnuradio.org "GNU Radio's Homepage") and all its dependencies is not a simple task. We recommend to use [PyBOMBS](http://gnuradio.org/redmine/projects/pybombs/wiki "Python Build Overlay Managed Bundle System wiki") (Python Build Overlay Managed Bundle System), the GNU Radio install management system that automatically does all the work for you. In a terminal, type:
 
@@ -205,7 +205,7 @@ PVT.nmea_dump_filename=./gnss_sdr_pvt.nmea
 PVT.flag_nmea_tty_port=false;
 PVT.nmea_dump_devname=/dev/pts/4
 PVT.dump=false
-
+~~~~~~
 
 Save this configuration in a file, for instance ```my_GN3S_receiver.conf```,  copy the file located at ``` gr-gn3s/firmware/GN3S_v2/bin/gn3s_firmware.ihx``` to your working directory, and instantiate gnss-sdr by doing:
 
