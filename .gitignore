@@ -1,0 +1,9 @@
+*~
+.*.swp
+docs/doxygen/Doxyfile
+docs/html
+docs/latex
+.project
+.cproject
+/install
+/.DS_Store
