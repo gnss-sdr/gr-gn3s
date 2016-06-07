@@ -1,6 +1,6 @@
-# How to build gr-gn3s
+# gr-gn3s
 
-Source maintainer: Javier Arribas (jarribas at cttc.es)
+GR-GN3S is a GNU Radio module intended to be used either with GNSS-SDR as a signal source, or as standalone signal source block instantiated from a GNU Radio flow graph from C++ or using Python (also includes a gnuradio-companion interface).
 
 This document describes how to build the GN3S V2 GPS Sampler GNU Radio Source USB 2.0 driver. 
 
@@ -8,11 +8,10 @@ More information on the device (not available anymore) can be found at http://ww
 
 The driver core is based on Gregory W. Hecker driver available at http://github.com/gps-sdr/gps-sdr.
 
-GR-GN3S is a GNU Radio's compliant signal source block intended to be used either with GNSS-SDR as a signal source, or as standalone signal source block instantiated from a GNU Radio flow graph from C++ or using Python (also includes a gnuradio-companion interface).
 
 ## Install GNU Radio:
 
-You can install GNU Radio through a .deb package *or* by using pybombs. Please choose only **one** of these two procedures.
+You can install GNU Radio through a .deb package or by using PyBOMBS. Please choose only **one** of these two procedures.
 
 - In Ubuntu 12.10 and later, or Debian Jessie or later, install GNU Radio and other dependencies through a .deb package:
 
@@ -60,12 +59,10 @@ $ . ./setup_env.sh
 In case you do not want to use PyBOMBS and prefer to build and install GNU Radio step by step, follow instructions at the [GNU Radio Build Guide](http://gnuradio.org/redmine/projects/gnuradio/wiki/BuildGuide).
 
 
-## Get the latest version of GNSS-SDR:
+## Get the latest version of gr-gn3s:
 
 ~~~~~~
-$ git clone git://github.com/gnss-sdr/gnss-sdr
-$ cd gnss-sdr
-$ git checkout next
+$ git clone git://github.com/gnss-sdr/gr-gn3s
 ~~~~~~
 
 ## Build GR-GN3S:
@@ -73,8 +70,7 @@ $ git checkout next
 - Go to GR-GN3S root directory and compile the driver:
 
 ~~~~~~
-$ cd drivers/gr-gn3s
-$ cd build
+$ cd gr-gn3s/build
 $ cmake ../
 $ make
 ~~~~~~
@@ -86,16 +82,22 @@ NOTE: If you have installed GNU Radio via the gnuradio-dev package, you might ne
 
 ~~~~~~
 $ sudo make install
+~~~~~~
+
+When using Ubuntu, you might need to type this line when the installation is finished:
+
+~~~~~~
 $ sudo ldconfig
 ~~~~~~
 
 ## Check that the module is usable by gnuradio-companion
  
-Open gnuradio-companion and check the gn3s_source module under the GN3S tab. In order to gain access to USB ports, gnuradio-companion should be used as root. In addition, the driver requires access to the GN3S firmware binary file. It should be available in the same path where the application is called. GNSS-SDR comes with a pre-compiled custom GN3S firmware available at gnss-sdr/firmware/GN3S_v2/bin/gn3s_firmware.ihx. Please copy this file to the application path.
+Open gnuradio-companion and check the gn3s_source module under the GN3S tab. In order to gain access to USB ports, gnuradio-companion should be used as root. In addition, the driver requires access to the GN3S firmware binary file. It should be available in the same path where the application is called. gr-gn3s comes with a pre-compiled custom GN3S firmware available at gr-gn3s/firmware/GN3S_v2/bin/gn3s_firmware.ihx. Please copy this file to the application path.
 
 ## Build gnss-sdr with the GN3S option enabled:
 
 ~~~~~~
+$ git clone git://github.com/gnss-sdr/gnss-sdr
 $ cd gnss-sdr/build
 $ cmake -DENABLE_GN3S=ON ../
 $ make
@@ -105,7 +107,7 @@ $ sudo make install
 This will enable the *GN3S_Signal_Source* implementation, which is able to read from the GN3S V2 GPS Sampler in real-time. 
 
 
-# Using the GN3S V2 GPS Sampler as a signal source with GNSS-SDR
+## Using the GN3S V2 GPS Sampler as a signal source with GNSS-SDR
 
 GN3S V2's sampling frequency is 8.1838 Msps, delivering a signal with an intermediate frequency of 38400 Hz. This is an example of a gnss-sdr configuration file for a GPS L1 C/A receiver using the *GN3S_Signal_Source* implementation:
 
@@ -204,13 +206,8 @@ PVT.flag_nmea_tty_port=false;
 PVT.nmea_dump_devname=/dev/pts/4
 PVT.dump=false
 
-;######### OUTPUT_FILTER CONFIG ############
-OutputFilter.implementation=Null_Sink_Output_Filter
-OutputFilter.filename=data/gnss-sdr.dat
-OutputFilter.item_type=gr_complex
-~~~~~~
 
-Save this configuration in a file, for instance ```my_GN3S_receiver.conf```,  copy the file located at ```install/gn3s_firmware.ihx``` to your working directory, and instantiate gnss-sdr by doing:
+Save this configuration in a file, for instance ```my_GN3S_receiver.conf```,  copy the file located at ``` gr-gn3s/firmware/GN3S_v2/bin/gn3s_firmware.ihx``` to your working directory, and instantiate gnss-sdr by doing:
 
 ~~~~~~
 $ gnss-sdr --config_file=./my_GN3S_receiver.conf
