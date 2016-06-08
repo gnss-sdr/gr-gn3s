@@ -16,7 +16,7 @@ You can install GNU Radio through a .deb package or by using PyBOMBS. Please cho
 ### In Ubuntu 12.10 and later, or Debian Jessie or later, install GNU Radio and other dependencies through a .deb package:
 
 ~~~~~~ 
-$ sudo apt-get install gnuradio-dev libusb-dev
+$ sudo apt-get install gnuradio-dev libusb-dev libusb-1.0.0-dev
 ~~~~~~
 
 
