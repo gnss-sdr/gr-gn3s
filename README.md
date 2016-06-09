@@ -62,7 +62,7 @@ In case you do not want to use PyBOMBS and prefer to build and install GNU Radio
 ## Get the latest version of gr-gn3s:
 
 ~~~~~~
-$ git clone git://github.com/gnss-sdr/gr-gn3s
+$ git clone https://github.com/gnss-sdr/gr-gn3s
 ~~~~~~
 
 ## Build GR-GN3S:
@@ -97,7 +97,7 @@ Open gnuradio-companion and check the gn3s_source module under the GN3S tab. In 
 ## Build gnss-sdr with the GN3S option enabled:
 
 ~~~~~~
-$ git clone git://github.com/gnss-sdr/gnss-sdr
+$ git clone https://github.com/gnss-sdr/gnss-sdr
 $ cd gnss-sdr/build
 $ cmake -DENABLE_GN3S=ON ../
 $ make
